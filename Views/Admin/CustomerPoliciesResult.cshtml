@@ -1,0 +1,41 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model List<Monocept.Models.Policy>
+
+<h2>Policies for @ViewBag.Email</h2>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Policy ID</th>
+        <th>Details</th>
+        <th>Premium</th>
+        <th>Scheme</th>
+        <th>Payments</th>
+    </tr>
+
+    @foreach (var policy in Model)
+    {
+        <tr>
+            <td>@policy.PolicyID</td>
+            <td>@policy.PolicyDetails</td>
+            <td>@policy.Premium</td>
+            <td>@policy.Scheme?.SchemeName</td>
+            <td>
+                @if (policy.Payments != null && policy.Payments.Count > 0)
+                {
+                    <ul>
+                        @foreach (var pay in policy.Payments)
+                        {
+                            <li>@pay.Amount on @pay.PaymentDate.ToShortDateString()</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <span>No Payments</span>
+                }
+            </td>
+        </tr>
+    }
+
+</table>

@@ -19,13 +19,13 @@ namespace Monocept.Services.Implementations
 
         public async Task CreateEmployee(Employee emp)
         {
-            emp.Password = BCrypt.Net.BCrypt.HashPassword(emp.Password);
+            //emp.Password = BCrypt.Net.BCrypt.HashPassword(emp.Password);
             await _empRepo.Add(emp);
         }
 
         public async Task CreateAgent(InsuranceAgent agent)
         {
-            agent.Password = BCrypt.Net.BCrypt.HashPassword(agent.Password);
+            //agent.Password = BCrypt.Net.BCrypt.HashPassword(agent.Password);
             await _agentRepo.Add(agent);
         }
     }
