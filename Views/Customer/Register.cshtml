@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        font-family: Arial;
+    }
+
+    .card {
+        width: 400px;
+        margin: 60px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background: #ff758c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="card">
+    <h2>Register</h2>
+
+    <form asp-action="Register" method="post">
+
+        <input type="text" name="FullName" placeholder="Full Name" required />
+        <input type="email" name="Email" placeholder="Email" required />
+        <input type="text" name="Phone" placeholder="Phone" required />
+        <input type="date" name="DateOfBirth" required />
+        <input type="password" name="Password" placeholder="Password" required />
+        <input type="number" name="AgentID" placeholder="Agent ID (try 1)" required />
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    @if (ViewBag.Message != null)
+    {
+        <p style="color:green">@ViewBag.Message</p>
+    }
+
+</div>
