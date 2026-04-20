@@ -47,6 +47,7 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IAdminService, AdminService>();
 builder.Services.AddScoped<IPolicyRepository, PolicyRepository>();
 builder.Services.AddScoped<IPolicyService, PolicyService>();
+builder.Services.AddScoped<ISchemeRepository, SchemeRepository>();
 
 var app = builder.Build();
 

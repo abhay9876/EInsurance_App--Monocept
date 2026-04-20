@@ -2,9 +2,6 @@
 using Monocept.Data;
 using Monocept.Models;
 using Monocept.Repository.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Monocept.Repository.Implementations
 {
@@ -16,7 +13,6 @@ namespace Monocept.Repository.Implementations
         {
             _context = context;
         }
-
         public async Task<List<Policy>> GetPoliciesByCustomerId(int customerId)
         {
             return await _context.Policies
@@ -24,6 +20,50 @@ namespace Monocept.Repository.Implementations
                 .Include(p => p.Scheme)
                 .Include(p => p.Payments)
                 .ToListAsync();
+        }
+
+        public async Task<List<Policy>> GetAll()
+        {
+            return await _context.Policies
+                .Include(p => p.Scheme)
+                .ToListAsync();
+        }
+
+        public async Task<Policy> GetById(int id)
+        {
+            return await _context.Policies
+                .Include(p => p.Scheme)
+                .FirstOrDefaultAsync(p => p.PolicyID == id);
+        }
+        public async Task Add(Policy policy)
+        {
+            await _context.Policies.AddAsync(policy);
+            await _context.SaveChangesAsync();
+        }
+        public async Task Update(Policy policy)
+        {
+            var existing = await _context.Policies.FindAsync(policy.PolicyID);
+
+            if (existing != null)
+            {
+                existing.PolicyDetails = policy.PolicyDetails;
+                existing.Premium = policy.Premium;
+                existing.MaturityPeriod = policy.MaturityPeriod;
+
+                await _context.SaveChangesAsync();
+            }
+        }
+
+   
+        public async Task Delete(int id)
+        {
+            var policy = await _context.Policies.FindAsync(id);
+
+            if (policy != null)
+            {
+                _context.Policies.Remove(policy);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

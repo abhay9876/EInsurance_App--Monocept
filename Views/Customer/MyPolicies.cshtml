@@ -1,35 +1,80 @@
 ﻿@model List<Monocept.Models.Policy>
 
-<h2>My Policies</h2>
+@{
+    ViewData["Title"] = "My Policies";
+    Layout = "_Layout";
+}
 
-<table class="table table-bordered table-striped mt-3">
+<div class="container mt-4">
 
-    <thead class="table-dark">
-        <tr>
-            <th>ID</th>
-            <th>Details</th>
-            <th>Premium</th>
-            <th>Scheme</th>
-            <th>Payments</th>
-        </tr>
-    </thead>
+    <div class="card shadow-sm">
 
-    <tbody>
-        @foreach (var p in Model)
-        {
-            <tr>
-                <td>@p.PolicyID</td>
-                <td>@p.PolicyDetails</td>
-                <td>@p.Premium</td>
-                <td>@p.Scheme?.SchemeName</td>
-                <td>
-                    @foreach (var pay in p.Payments)
-                    {
-                        <div>@pay.Amount</div>
-                    }
-                </td>
-            </tr>
-        }
-    </tbody>
+        <div class="card-body">
 
-</table>
+            <h4 class="mb-3">My Policies</h4>
+            <hr />
+
+            @if (Model != null && Model.Count > 0)
+            {
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-striped align-middle">
+
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Details</th>
+                                <th>Premium</th>
+                                <th>Scheme</th>
+                                <th>Payments</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var p in Model)
+                            {
+                                <tr>
+                                    <td>@p.PolicyID</td>
+                                    <td>@p.PolicyDetails</td>
+                                    <td>₹@p.Premium</td>
+                                    <td>@p.Scheme?.SchemeName</td>
+                                    <td>
+                                        @if (p.Payments != null && p.Payments.Count > 0)
+                                        {
+                                            <ul class="mb-0">
+                                                @foreach (var pay in p.Payments)
+                                                {
+                                                    <li>
+                                                        ₹@pay.Amount
+                                                        <span class="text-muted">
+                                                            (@pay.PaymentDate.ToShortDateString())
+                                                        </span>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">No Payments</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info text-center">
+                    You have not purchased any policies yet.
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>

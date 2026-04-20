@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Buy Policy";
+    Layout = "_Layout";
+}
+
+<div class="d-flex justify-content-center mt-5">
+
+    <div class="card shadow-sm" style="width: 450px;">
+
+        <div class="card-body">
+
+            <h4 class="text-center mb-3">Buy Policy</h4>
+            <hr />
+
+            <form method="post">
+
+                <input type="hidden" name="SchemeID" value="@ViewBag.SchemeID" />
+
+                <div class="mb-3">
+                    <label>Policy Details</label>
+                    <input name="PolicyDetails" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label>Premium</label>
+                    <input name="Premium" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label>Maturity Period (Years)</label>
+                    <input name="MaturityPeriod" class="form-control" required />
+                </div>
+
+                <button class="btn btn-primary w-100">
+                    Purchase Policy
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

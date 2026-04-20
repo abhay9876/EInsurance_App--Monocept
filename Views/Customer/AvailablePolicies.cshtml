@@ -1,0 +1,50 @@
+﻿@model List<Monocept.Models.Scheme>
+
+@{
+    ViewData["Title"] = "Available Policies";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+
+    <h3 class="mb-4">Available Policies</h3>
+
+    <div class="row g-4">
+
+        @foreach (var s in Model)
+        {
+            <div class="col-md-4">
+
+                <div class="card shadow-sm h-100">
+
+                    <div class="card-body d-flex flex-column">
+
+                        <!-- 🔥 Scheme Name -->
+                        <h5 class="card-title">@s.SchemeName</h5>
+
+                        <!-- 🔥 Details -->
+                        <p class="card-text text-muted">
+                            @s.SchemeDetails
+                        </p>
+
+                        <!-- 🔥 Tag -->
+                        <span class="badge bg-info mb-3">Insurance Scheme</span>
+
+                        <!-- 🔥 Button -->
+                        <div class="mt-auto">
+                            <a asp-action="BuyPolicy" asp-route-id="@s.SchemeID"
+                                   class="btn btn-success w-100">
+                                Buy Policy
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>
