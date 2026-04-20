@@ -48,5 +48,17 @@ namespace Monocept.Repository.Implementations
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task Update(InsuranceAgent agent)
+        {
+            var existing = await _context.InsuranceAgents.FindAsync(agent.AgentID);
+
+            if (existing != null)
+            {
+                existing.FullName = agent.FullName;
+                existing.Email = agent.Email;
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

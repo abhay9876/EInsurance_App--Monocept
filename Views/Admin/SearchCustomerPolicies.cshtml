@@ -1,7 +1,33 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-<h2>Search Customer Policies</h2>
+﻿@{
+    ViewData["Title"] = "Search Customer Policies";
+    Layout = "_Layout";
+}
 
-<form method="post">
-    <input type="email" name="email" placeholder="Enter Customer Email" required />
-    <button type="submit">Search</button>
-</form>
+<div class="d-flex justify-content-center mt-5">
+
+    <div class="card shadow-sm" style="width: 450px;">
+
+        <div class="card-body">
+
+            <h4 class="text-center mb-3">Search Customer Policies</h4>
+            <hr />
+
+            <form method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Customer Email</label>
+                    <input type="email" name="email" class="form-control"
+                           placeholder="Enter customer email" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">
+                    Search
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

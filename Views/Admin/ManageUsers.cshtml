@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Manage Users";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            <h4 class="mb-3">Manage Users</h4>
+            <hr />
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="card border h-100">
+                        <div class="card-body text-center">
+
+                            <div class="mb-3">
+                                <span class="badge bg-primary p-3 fs-5">👨‍💼</span>
+                            </div>
+
+                            <h6>Create Employee</h6>
+                            <p class="text-muted small">
+                                Add new employees to the system
+                            </p>
+
+                            <a asp-action="CreateEmployee" class="btn btn-primary btn-sm">
+                                Create
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="col-md-4">
+                    <div class="card border h-100">
+                        <div class="card-body text-center">
+
+                            <div class="mb-3">
+                                <span class="badge bg-success p-3 fs-5">🧑‍💼</span>
+                            </div>
+
+                            <h6>Create Agent</h6>
+                            <p class="text-muted small">
+                                Add new insurance agents
+                            </p>
+
+                            <a asp-action="CreateAgent" class="btn btn-success btn-sm">
+                                Create
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <a asp-action="Employees" class="btn btn-outline-primary mt-2">
+                    View Employees
+                </a>
+
+                <a asp-action="Agents" class="btn btn-outline-success mt-2 ms-2">
+                    View Agents
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

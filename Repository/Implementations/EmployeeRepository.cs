@@ -42,11 +42,19 @@ namespace Monocept.Repository.Implementations
             await _context.SaveChangesAsync();
         }
 
-        public async Task Update(Employee employee)
+        public async Task Update(Employee emp)
         {
-            _context.Employees.Update(employee);
-            await _context.SaveChangesAsync();
-        }
+            var existing = await _context.Employees.FindAsync(emp.EmployeeID);
+
+            if (existing != null)
+            {
+                existing.FullName = emp.FullName;
+                existing.Email = emp.Email;
+                existing.Username = emp.Username;
+                existing.Role = emp.Role;
+                await _context.SaveChangesAsync();
+            }
+            }
 
         public async Task Delete(int id)
         {

@@ -11,5 +11,7 @@ namespace Monocept.Repository.Interfaces
         Task<InsuranceAgent> GetByEmail(string email);
         Task Add(InsuranceAgent agent);
         Task Delete(int id);
+
+        Task Update(InsuranceAgent agent);
     }
 }

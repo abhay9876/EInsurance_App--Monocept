@@ -1,0 +1,42 @@
+﻿@model List<Monocept.Models.Employee>
+
+@{
+    Layout = "_Layout";
+}
+
+<h3>Employees</h3>
+
+<table class="table table-bordered mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var e in Model)
+        {
+            <tr>
+                <td>@e.EmployeeID</td>
+                <td>@e.FullName</td>
+                <td>@e.Email</td>
+                <td>@e.Role</td>
+                <td>
+                    <a asp-action="EditEmployee" asp-route-id="@e.EmployeeID"
+                           class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+                    <a asp-action="DeleteEmployee" asp-route-id="@e.EmployeeID"
+                           class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

@@ -1,0 +1,40 @@
+﻿@model List<Monocept.Models.InsuranceAgent>
+
+@{
+    Layout = "_Layout";
+}
+
+<h3>Agents</h3>
+
+<table class="table table-bordered mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>@a.AgentID</td>
+                <td>@a.FullName</td>
+                <td>@a.Email</td>
+                <td>
+                    <a asp-action="EditAgent" asp-route-id="@a.AgentID"
+                           class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+                    <a asp-action="DeleteAgent" asp-route-id="@a.AgentID"
+                           class="btn btn-danger btn-sm">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

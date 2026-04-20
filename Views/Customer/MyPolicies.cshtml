@@ -2,38 +2,34 @@
 
 <h2>My Policies</h2>
 
-<table border="1" cellpadding="10">
-    <tr>
-        <th>Policy ID</th>
-        <th>Details</th>
-        <th>Premium</th>
-        <th>Scheme</th>
-        <th>Payments</th>
-    </tr>
+<table class="table table-bordered table-striped mt-3">
 
-    @foreach (var policy in Model)
-    {
+    <thead class="table-dark">
         <tr>
-            <td>@policy.PolicyID</td>
-            <td>@policy.PolicyDetails</td>
-            <td>@policy.Premium</td>
-            <td>@policy.Scheme?.SchemeName</td>
-            <td>
-                @if (policy.Payments != null && policy.Payments.Count > 0)
-                {
-                    <ul>
-                        @foreach (var pay in policy.Payments)
-                        {
-                            <li>@pay.Amount on @pay.PaymentDate.ToShortDateString()</li>
-                        }
-                    </ul>
-                }
-                else
-                {
-                    <span>No Payments</span>
-                }
-            </td>
+            <th>ID</th>
+            <th>Details</th>
+            <th>Premium</th>
+            <th>Scheme</th>
+            <th>Payments</th>
         </tr>
-    }
+    </thead>
+
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.PolicyID</td>
+                <td>@p.PolicyDetails</td>
+                <td>@p.Premium</td>
+                <td>@p.Scheme?.SchemeName</td>
+                <td>
+                    @foreach (var pay in p.Payments)
+                    {
+                        <div>@pay.Amount</div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
