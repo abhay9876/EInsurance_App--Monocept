@@ -21,7 +21,9 @@ namespace Monocept.Repository.Implementations
 
         public async Task<Scheme> GetById(int id)
         {
-            return await _context.Schemes.FindAsync(id);
+            return await _context.Schemes
+                .Include(s => s.Plan)   
+                .FirstOrDefaultAsync(s => s.SchemeID == id);
         }
     }
 }

@@ -71,10 +71,14 @@ namespace Monocept.Controllers
             return View(schemes);
         }
 
-        public IActionResult BuyPolicy(int id)
+        public async Task<IActionResult> BuyPolicy(int id)
         {
-            ViewBag.SchemeID = id;
-            return View();
+            var scheme = await _schemeRepo.GetById(id);
+
+            if (scheme == null)
+                return NotFound();
+
+            return View(scheme);
         }
 
         [HttpPost]

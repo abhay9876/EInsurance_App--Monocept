@@ -1,11 +1,13 @@
-﻿@{
+﻿@model Monocept.Models.Scheme
+
+@{
     ViewData["Title"] = "Buy Policy";
     Layout = "_Layout";
 }
 
 <div class="d-flex justify-content-center mt-5">
 
-    <div class="card shadow-sm" style="width: 450px;">
+    <div class="card shadow-sm" style="width: 500px;">
 
         <div class="card-body">
 
@@ -14,7 +16,17 @@
 
             <form method="post">
 
-                <input type="hidden" name="SchemeID" value="@ViewBag.SchemeID" />
+                <input type="hidden" name="SchemeID" value="@Model.SchemeID" />
+
+                <div class="mb-3">
+                    <label>Scheme</label>
+                    <input class="form-control" value="@Model.SchemeName" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label>Description</label>
+                    <textarea class="form-control" readonly>@Model.SchemeDetails</textarea>
+                </div>
 
                 <div class="mb-3">
                     <label>Policy Details</label>
@@ -23,7 +35,7 @@
 
                 <div class="mb-3">
                     <label>Premium</label>
-                    <input name="Premium" class="form-control" required />
+                    <input name="Premium" class="form-control" placeholder="Auto calculated later" required />
                 </div>
 
                 <div class="mb-3">
