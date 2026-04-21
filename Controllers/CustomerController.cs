@@ -71,10 +71,14 @@ namespace Monocept.Controllers
             return View(schemes);
         }
 
-        public IActionResult BuyPolicy(int id)
+        public async Task<IActionResult> BuyPolicy(int id)
         {
-            ViewBag.SchemeID = id;
-            return View();
+            var scheme = await _schemeRepo.GetById(id);
+
+            if (scheme == null)
+                return NotFound();
+
+            return View(scheme);
         }
 
         [HttpPost]
@@ -97,6 +101,28 @@ namespace Monocept.Controllers
             return RedirectToAction("MyPolicies");
         }
 
+        // GET
+        public IActionResult PremiumCalculator()
+        {
+            return View();
+        }
+
+        // POST
+        [HttpPost]
+        public IActionResult PremiumCalculator(int Age, int Years)
+        {
+            double baseAmount = 1000;
+            double ageFactor = Age * 10;
+            double maturityFactor = Years * 200;
+
+            double premium = baseAmount + ageFactor + maturityFactor;
+
+            ViewBag.Premium = premium;
+            ViewBag.Age = Age;
+            ViewBag.Years = Years;
+
+            return View();
+        }
 
     }
 }

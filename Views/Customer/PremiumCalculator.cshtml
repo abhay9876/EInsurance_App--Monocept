@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Premium Calculator";
+    Layout = "_Layout";
+}
+
+<div class="d-flex justify-content-center mt-5">
+
+    <div class="card shadow-sm" style="width: 450px;">
+
+        <div class="card-body">
+
+            <h4 class="text-center mb-3">Premium Calculator</h4>
+            <hr />
+
+            <form method="post">
+
+                <div class="mb-3">
+                    <label>Age</label>
+                    <input name="Age" value="@ViewBag.Age" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label>Maturity Period (Years)</label>
+                    <input name="Years" value="@ViewBag.Years" class="form-control" required />
+                </div>
+
+                <button class="btn btn-primary w-100">
+                    Calculate Premium
+                </button>
+
+            </form>
+
+            @if (ViewBag.Premium != null)
+            {
+                <div class="alert alert-success mt-4 text-center">
+
+                    <h5>Calculated Premium</h5>
+                    <h3 class="fw-bold">₹@ViewBag.Premium</h3>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>
