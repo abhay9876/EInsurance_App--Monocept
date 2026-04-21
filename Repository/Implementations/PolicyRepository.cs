@@ -22,6 +22,13 @@ namespace Monocept.Repository.Implementations
                 .ToListAsync();
         }
 
+        public async Task<List<Policy>> GetPoliciesByCustomerIds(List<int> customerIds)
+        {
+            return await _context.Policies
+                .Where(p => customerIds.Contains(p.CustomerID))
+                .ToListAsync();
+        }
+
         public async Task<List<Policy>> GetAll()
         {
             return await _context.Policies

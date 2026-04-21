@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Monocept.Models;
 using Monocept.Repository.Interfaces;
 using Monocept.Services.Interfaces;
@@ -12,13 +13,15 @@ namespace Monocept.Controllers
         private readonly IAdminService _adminService;
         private readonly IEmployeeRepository _empRepo;
         private readonly IAgentRepository _agentRepo;
+        private readonly ICustomerRepository _customerRepo;
 
-        public AdminController(IPolicyService policyService, IAdminService adminService,IEmployeeRepository empRepo,IAgentRepository agentRepo)
+        public AdminController(IPolicyService policyService, IAdminService adminService,IEmployeeRepository empRepo,IAgentRepository agentRepo, ICustomerRepository customerRepo)
         {
             _policyService = policyService;
             _adminService = adminService;
             _empRepo = empRepo;
             _agentRepo = agentRepo;
+            _customerRepo = customerRepo;
         }
 
         public IActionResult Dashboard()
@@ -85,7 +88,25 @@ namespace Monocept.Controllers
             return View(agents);
         }
 
-       
+        public async Task<IActionResult> CommissionCalculator()
+        {
+            var agents = await _agentRepo.GetAll();
+            return View(agents);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CommissionCalculator(int agentId)
+        {
+            var result = await _adminService.CalculateCommission(agentId);
+
+            ViewBag.Total = result.total;
+            ViewBag.Commission = result.commission;
+            ViewBag.AgentId = agentId;
+
+            var agents = await _agentRepo.GetAll();
+            return View(agents);
+        }
+
         public async Task<IActionResult> DeleteAgent(int id)
         {
             await _agentRepo.Delete(id);
@@ -117,5 +138,11 @@ namespace Monocept.Controllers
             await _agentRepo.Update(agent);
             return RedirectToAction("Agents");
         }
+
+        //public async Task<IActionResult> CommissionCalculator()
+        //{
+        //    var agents = _agentRepo.GetAll();
+        //    return View(agents);
+        //}
     }
 }

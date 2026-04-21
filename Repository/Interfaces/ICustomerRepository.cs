@@ -12,5 +12,7 @@ namespace Monocept.Repository.Interfaces
         Task Add(Customer customer);
         Task Update(Customer customer);
         Task Delete(int id);
+
+        Task<List<Customer>> GetAllByAgentID(int id);
     }
 }

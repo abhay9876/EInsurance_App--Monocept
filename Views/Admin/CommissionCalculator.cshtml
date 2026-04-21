@@ -1,0 +1,73 @@
+﻿@model List<Monocept.Models.InsuranceAgent>
+
+@{
+    ViewData["Title"] = "Commission Calculator";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            <h4 class="mb-3">Commission Calculator</h4>
+            <hr />
+
+            <form method="post">
+
+                <div class="row">
+
+                    <div class="col-md-8">
+                        <select name="agentId" class="form-control">
+
+                            @foreach (var a in Model)
+                            {
+                                <option value="@a.AgentID" selected="@(ViewBag.AgentId == a.AgentID)">
+                                    @a.FullName
+                                </option>
+                            }
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <button class="btn btn-primary w-100">
+                            Calculate
+                        </button>
+                    </div>
+
+                </div>
+
+            </form>
+
+            @if (ViewBag.Commission != null)
+            {
+                <div class="row mt-4">
+
+                    <div class="col-md-6">
+                        <div class="card bg-light text-center">
+                            <div class="card-body">
+                                <h6>Total Premium</h6>
+                                <h4>₹@ViewBag.Total</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card bg-success text-white text-center">
+                            <div class="card-body">
+                                <h6>Commission (10%)</h6>
+                                <h3>₹@ViewBag.Commission</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>

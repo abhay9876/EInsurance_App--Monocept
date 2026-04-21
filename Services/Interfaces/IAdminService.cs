@@ -7,5 +7,8 @@ namespace Monocept.Services.Interfaces
     {
         Task CreateEmployee(Employee emp);
         Task CreateAgent(InsuranceAgent agent);
+
+        Task<(double total, double commission)> CalculateCommission(int agentId);
+
     }
 }

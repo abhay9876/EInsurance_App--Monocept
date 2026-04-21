@@ -57,5 +57,11 @@ namespace Monocept.Repository.Implementations
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<List<Customer>> GetAllByAgentID(int id)
+        {
+            var customers = await _context.Customers.Where(n => n.AgentID == id).ToListAsync();
+            return customers;
+        }
     }
 } 
